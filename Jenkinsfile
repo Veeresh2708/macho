@@ -20,7 +20,7 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/Veeresh2708/macho.git'
             }
         }
-        stage("Sonarqube Analysis") {
+        stage("Sonarqube Analysis's") {
             steps {
                 withSonarQubeEnv('sonar-server') {
                     sh '''mvn clean verify sonar:sonar \
