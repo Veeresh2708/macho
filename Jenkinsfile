@@ -23,7 +23,8 @@ pipeline {
         stage("Sonarqube Analysis's") {
             steps {
                 withSonarQubeEnv('sonar-server') {
-                    sh '''mvn clean verify sonar:sonar \
+                    sh '''mvn clean verify $SCANNER_HOME/bin/sonar:sonar \
+                          -Dsonar.projectName=Macho \
                           -Dsonar.projectKey=Macho \
                           -Dsonar.host.url=http://34.83.239.116:9000 \
                           -Dsonar.login=sqp_9849ac270211c889bf9fb8e7898017b18cc18811'''
