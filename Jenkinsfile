@@ -23,10 +23,8 @@ pipeline {
         stage("Sonarqube Analysis's") {
             steps {
                 withSonarQubeEnv('sonar-server') {
-                    sh '''sonar:sonar \
-                          -Dsonar.projectKey=Macho1 \
-                          -Dsonar.host.url=http://35.230.59.202:9000 \
-                          -Dsonar.login=sqp_5ca5e25d5c0e3fd3478dc8285b84a1221d204e1c'''
+                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Macho1 \
+                    -Dsonar.projectKey=Macho1'''
                 }
             }
         }
