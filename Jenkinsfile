@@ -9,22 +9,24 @@ pipeline {
     }
 
   stages {
-      stage('Build Artifact') {
+        stage('Checkout from Git') {
+            steps {
+                git branch: 'master', url: 'https://github.com/Veeresh2708/macho.git'
+            }
+        }
+        stage('Build Artifact') {
             steps {
               sh "mvn clean package -DskipTests=true"
               archive 'target/*.jar' //so that they can be downloaded later
             }
         }
-      stage('Checkout from Git') {
-            steps {
-                git branch: 'master', url: 'https://github.com/Veeresh2708/macho.git'
-            }
-        }
         stage("Sonarqube Analysis's") {
             steps {
                 withSonarQubeEnv('sonar-server') {
-                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Macho \
-                    -Dsonar.projectKey=Macho'''
+                    sh '''sonar:sonar \
+                          -Dsonar.projectKey=Macho1 \
+                          -Dsonar.host.url=http://35.230.59.202:9000 \
+                          -Dsonar.login=sqp_5ca5e25d5c0e3fd3478dc8285b84a1221d204e1c'''
                 }
             }
         }
