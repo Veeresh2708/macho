@@ -23,9 +23,9 @@ pipeline {
         stage("Sonarqube Analysis's") {
             steps {
                 withSonarQubeEnv('sonar-server') {
-                    sh '''mvn sonar:sonar \ 
-                    -Dsonar.projectName=Macho1 \
-                    -Dsonar.projectKey=Macho1 \
+                    sh '''mvn sonar:sonar 
+                    -Dsonar.projectName=Macho1 
+                    -Dsonar.projectKey=Macho1 
                     -Dsonar.host.url=http://35.230.59.202:9000'''
                 }
             }
