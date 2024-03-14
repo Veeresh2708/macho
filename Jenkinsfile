@@ -23,7 +23,8 @@ pipeline {
         stage("Sonarqube Analysis's") {
             steps {
                 withSonarQubeEnv('sonar-server') {
-                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Macho1 \
+                    sh '''$SCANNER_HOME/bin/sonar-scanner \
+                    sonar:sonar -Dsonar.projectName=Macho1 \
                     -Dsonar.projectKey=Macho1'''
                 }
             }
