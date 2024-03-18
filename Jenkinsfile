@@ -40,8 +40,8 @@ pipeline {
         stage('Docker Build and Push') {
             steps {
                 script{
-                  // withDockerRegistry(credentialsId: 'docker-hub', toolName: 'docker'){
-                   withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                   withDockerRegistry(credentialsId: 'docker-hub', toolName: 'docker'){
+                   //withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                    sh 'printenv'
                    sh 'docker build -t veereshvanga/macho1:""$GIT_COMMIT"" .'
                    sh 'docker push veereshvanga/macho1:""$GIT_COMMIT""'
