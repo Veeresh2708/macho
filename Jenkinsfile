@@ -39,7 +39,9 @@ pipeline {
         stage("Sonarqube Analysis's") {
             steps {
                 withSonarQubeEnv('sonar-server') {
-                    sh '''mvn sonar:sonar 00-Dsonar.projectName=Macho1 -Dsonar.projectKey=Macho1 -Dsonar.host.url=http://34.83.246.71/:9000 -Dsonar.login=sqp_a9406e2370dfee4eb89869a0185a10af6a818316'''
+                    //sh '''mvn sonar:sonar 00-Dsonar.projectName=Macho1 -Dsonar.projectKey=Macho1 -Dsonar.host.url=http://34.83.246.71/:9000 -Dsonar.login=sqp_a9406e2370dfee4eb89869a0185a10af6a818316'''
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Macho1 \
+                    -Dsonar.projectKey=Macho1 '''
                 }
             }
         }
