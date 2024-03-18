@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Docker Build and Push') {
             steps {
-               withCredentials([usernamePassword(credentialsId: 'Docker_login', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+               withCredentials([usernamePassword(credentialsId: 'docker_hub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                 sh 'printenv'
                 sh 'docker build -t veereshvanga/macho1:""$GIT_COMMIT"" .'
                 sh 'docker push veereshvanga/macho1:""$GIT_COMMIT""'
