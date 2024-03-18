@@ -54,7 +54,7 @@ pipeline {
                }
             }
         }
-        stage('Trivy FS Scanning') {
+        stage('Trivy Scanning') {
             steps {
               sh 'trivy image nasi101/netflix:latest > trivyimage.txt'
             }
