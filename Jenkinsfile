@@ -11,7 +11,7 @@ pipeline {
   stages {
         stage('Checkout from Git') {
             steps {
-                git branch: 'master', url: 'https://github.com/Veeresh2708/macho.git'
+                git branch: 'Jacoco/unit_testing', url: 'https://github.com/Veeresh2708/macho.git'
             }
         }
         stage('Build Artifact') {
