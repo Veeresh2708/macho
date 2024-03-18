@@ -38,10 +38,12 @@ pipeline {
         }
         stage('Docker Build and Push') {
             steps {
-               withCredentials([usernamePassword(credentialsId: 'docker-hub', toolName: 'docker')]) {
-                sh 'printenv'
-                sh 'docker build -t veereshvanga/macho1:""$GIT_COMMIT"" .'
-                sh 'docker push veereshvanga/macho1:""$GIT_COMMIT""'
+                script{
+                   withDockerRegistry(credentialsId: 'docker-hub', toolName: 'docker'){
+               //withCredentials([usernamePassword(credentialsId: 'docker-hub', toolName: 'docker')]) {
+                   sh 'printenv'
+                   sh 'docker build -t veereshvanga/macho1:""$GIT_COMMIT"" .'
+                   sh 'docker push veereshvanga/macho1:""$GIT_COMMIT""'
                }
             }
         }
