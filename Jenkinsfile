@@ -31,7 +31,13 @@ pipeline {
                 }
             }
         }
-
+        stage('Docker Build and Push') {
+            steps {
+                sh 'printenv'
+                sh 'docker build -t veereshvanga/macho1:""$GIT_COMMIT"" .'
+                sh 'docker push veereshvanga/macho1:""$GIT_COMMIT""'
+            }
+        }
     }
 }
 
