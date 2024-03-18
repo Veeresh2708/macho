@@ -44,6 +44,7 @@ pipeline {
                    sh 'printenv'
                    sh 'docker build -t veereshvanga/macho1:""$GIT_COMMIT"" .'
                    sh 'docker push veereshvanga/macho1:""$GIT_COMMIT""'
+                   }
                }
             }
         }
