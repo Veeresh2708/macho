@@ -24,23 +24,14 @@ pipeline {
             steps {
               sh "mvn test"
             }
-<<<<<<< HEAD
             post {
-=======
-              post {
->>>>>>> 7c0915c322615b099afb3db1071b606bfca08090
                 always {
                 junit 'target/surefire-reports/*.xml'
                 jacoco execPattern: 'target/jacoco.exec'
                 }
-<<<<<<< HEAD
             }
         }
 
-=======
-              }
-           }
->>>>>>> 7c0915c322615b099afb3db1071b606bfca08090
     }
 }
 
