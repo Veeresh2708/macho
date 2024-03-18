@@ -48,8 +48,8 @@ pipeline {
                    //withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                    sh 'printenv'
                    sh 'docker build -t springboot_app:""$GIT_COMMIT"" .'
-                   sh 'docker tag veereshvanga/macho1:$BUILD_ID'
-                   sh 'docker push veereshvanga/macho1:""$BUILD_ID""'
+                   sh 'docker tag veereshvanga/macho1:$BUILD_NUMBER'
+                   sh 'docker push veereshvanga/macho1:""$BUILD_NUMBER""'
                    }
                }
             }
