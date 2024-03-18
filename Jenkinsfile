@@ -19,11 +19,11 @@ pipeline {
                 git branch: 'Jacoco/unit_testing', url: 'https://github.com/Veeresh2708/macho.git'
             }
         }
-        stage('Build Artifact') {
-            steps {
-              sh "mvn clean package -DskipTests=true"
-              archive 'target/*.jar' //so that they can be downloaded later
-            }
+            stage('Build Artifact') {
+                steps {
+                sh "mvn clean package -DskipTests=true"
+                archive 'target/*.jar' //so that they can be downloaded later
+                }
         }
         stage('Unit Tests') {
             steps {
@@ -36,6 +36,11 @@ pipeline {
                 }
             }
         }
+        stage('Trivy FS Scanning') {
+            steps {
+              sh 'trivy fs . > trivyfs.txt'
+            }
+        }
         stage('Docker Build and Push') {
             steps {
                 script{
@@ -44,9 +49,14 @@ pipeline {
                    sh 'printenv'
                    sh 'docker build -t Springboot_app:""$GIT_COMMIT"" .'
                    sh 'docker tag veereshvanga/macho1:$BUILD_ID'
-                   sh 'docker push veereshvanga/macho1:""$GIT_COMMIT""'
+                   sh 'docker push veereshvanga/macho1:""$BUILD_ID""'
                    }
                }
+            }
+        }
+        stage('Trivy FS Scanning') {
+            steps {
+              sh 'trivy image nasi101/netflix:latest > trivyimage.txt'
             }
         }
     }
