@@ -38,12 +38,13 @@ pipeline {
         }
         stage("Sonarqube Analysis's") {
             steps {
-                withSonarQubeEnv('sonar-server') {
+                withSonarQubeEnv(credentialsID:'SONAR_TOKEN') {
                 sh """
               $SCANNER_HOME/bin/sonar-scanner \
               -Dsonar.projectName=Macho1 \
               -Dsonar.projectKey=Macho1 \
               -Dsonar.sources=. \
+              -Dsonar.host.url= http://34.83.246.71:9000 \
               -Dsonar.login=$SONAR_TOKEN
             """
                 //withSonarQubeEnv('sonar-server') {
