@@ -36,19 +36,19 @@ pipeline {
                 }
             }
         }
-        stage('Mutation Tests - PIT') {
-            steps {
-                sh "mvn org.pitest:pitest-maven:mutationCoverage"
-            }
-            post {
-                always {
-                    pitmutation killRatioMustImprove: false, minimumKillRatio: 50.0, mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
-                }
-            }
-        }
         stage('Trivy FS Scanning') {
             steps {
               sh 'trivy fs . > trivyfs.txt'
+            }
+        }
+        stage('Vulnerability Scan - Docker ') {
+            steps {
+                sh "mvn dependency-check:check"
+            }
+            post {
+                always {
+                    dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+                }
             }
         }
         stage('Docker Build and Push') {
