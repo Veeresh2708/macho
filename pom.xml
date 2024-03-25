@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>com.devsecops</groupId>
-	<artifactId>Macho1</artifactId>
+	<artifactId>numeric</artifactId>
 	<version>0.0.1</version>
-	<name>Macho1</name>
+	<name>numeric</name>
 	<description>Demo for DevSecOps</description>
 
 	<properties>
