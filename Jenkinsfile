@@ -56,7 +56,7 @@ pipeline {
         }
         stage('Trivy Scanning') {
             steps {
-              sh 'trivy image nasi101/netflix:latest > trivyimage.txt'
+              sh 'trivy image veereshvanga/macho1:""$BUILD_NUMBER"" > trivyimage.txt'
             }
         }
     }
